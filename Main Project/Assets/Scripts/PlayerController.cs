@@ -21,13 +21,23 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalInpit = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-    }
+        if (gameManager.isGameActive == true) { 
+
+            horizontalInpit = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxis("Vertical");
+        }
+}
 
     private void FixedUpdate()
     {
-        playerRB.AddForce(new Vector3(horizontalInpit, 0.0f, verticalInput) * speed);
+        if (gameManager.isGameActive == true)
+        {
+            playerRB.AddForce(new Vector3(horizontalInpit, 0.0f, verticalInput) * speed);
+        }
+        else
+        {
+            playerRB.velocity = Vector3.zero;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
