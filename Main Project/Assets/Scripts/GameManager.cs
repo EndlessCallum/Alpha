@@ -20,4 +20,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game Over");
     }
+
+    public void GameFinished()
+    {
+        Debug.Log("Game Finished");
+    }
 }

@@ -30,11 +30,15 @@ public class PlayerController : MonoBehaviour
         playerRB.AddForce(new Vector3(horizontalInpit, 0.0f, verticalInput) * speed);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.CompareTag("Game Over Plane"))
+        if(collision.gameObject.CompareTag("Game Over Plane"))
         {
             gameManager.GameOver();
+        }
+        else if (collision.gameObject.CompareTag("Finish"))
+        {
+            gameManager.GameFinished();
         }
     }
 }
