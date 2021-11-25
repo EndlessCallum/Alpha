@@ -11,11 +11,14 @@ public class PlayerController : MonoBehaviour
 
     private GameManager gameManager;
 
+    private Vector3 startPos;
+
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        startPos = transform.position;
     }
 
     // Update is called once per frame
@@ -37,6 +40,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             playerRB.velocity = Vector3.zero;
+            transform.position = startPos;
         }
     }
 
