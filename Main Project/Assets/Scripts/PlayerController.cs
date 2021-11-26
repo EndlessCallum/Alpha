@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
 
     private Vector3 startPos;
+    public Vector3 jump;
+    public float jumpForce = 2.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
         playerRB = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         startPos = transform.position;
+        jump = new Vector3(0.0f, 2.0f, 0.0f);
     }
 
     // Update is called once per frame
@@ -28,6 +31,11 @@ public class PlayerController : MonoBehaviour
 
             horizontalInpit = Input.GetAxis("Horizontal");
             verticalInput = Input.GetAxis("Vertical");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerRB.AddForce(jump * jumpForce, ForceMode.Impulse);
         }
 }
 
